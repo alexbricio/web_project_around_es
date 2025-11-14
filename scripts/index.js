@@ -63,3 +63,16 @@ function handleOpenEditModal() {
   fillProfileForm();
   openModal(modal_popup);
 }
+
+let formElement = modal_popup.querySelector("#edit-profile-form");
+
+function handleProfileFormSubmit(evt) {
+  evt.preventDefault();
+  const newName = nombre_input.value;
+  const newDescription = descripcion_input.value;
+  nombre_perfil.textContent = newName;
+  descripcion.textContent = newDescription;
+  closeModal(modal_popup);
+}
+
+formElement.addEventListener("submit", handleProfileFormSubmit);
