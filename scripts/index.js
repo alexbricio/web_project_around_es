@@ -121,3 +121,21 @@ addButton.addEventListener("click", function() {
 closeNewCard.addEventListener("click", function(){
   closeModal(newCardPop);
 });
+
+popupForm.addEventListener("submit", handleCardFormSubmit);
+
+function handleCardFormSubmit(evt) {
+  evt.preventDefault();
+
+  const nameValue = inputName.value;
+  const urlValue = inputUrl.value;
+
+  renderCard(nameValue, urlValue, cardContainer);
+
+  popupForm.reset();
+
+  closeModal(newCardPop);
+  
+}
+
+popupForm.addEventListener("submit", handleCardFormSubmit);
