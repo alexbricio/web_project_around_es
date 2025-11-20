@@ -31,6 +31,11 @@ const cardTemplate = document
 
 
 const cardContainer = document.querySelector(".cards__list");
+const imagePopup = document.querySelector("#image-popup");
+const popupImage = imagePopup.querySelector(".popup__image");
+const popupCaption = imagePopup.querySelector(".popup__caption");
+const popupButton = imagePopup.querySelector(".popup__close");
+
 
 
 function getCardElement(
@@ -55,8 +60,21 @@ function getCardElement(
     cardTempleteClon.remove();
   });
 
+  cardImage.addEventListener("click", function(){
+    popupCaption.textContent = name;
+    popupImage.src = link;
+    popupImage.alt = name;
+    openModal(imagePopup);
+    
+  });
+
+
  return cardTempleteClon;
 }
+
+ popupButton.addEventListener("click", function(){
+    closeModal(imagePopup);
+  });
 
 function renderCard(name, link, container) {
   const cardElement = getCardElement(name, link);
