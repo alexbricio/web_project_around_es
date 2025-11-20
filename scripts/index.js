@@ -40,12 +40,22 @@ function getCardElement(
   const cardTempleteClon = cardTemplate.cloneNode(true);
   const cardImage = cardTempleteClon.querySelector(".card__image");
   const cardTitle = cardTempleteClon.querySelector(".card__title");
+  const likeButton = cardTempleteClon.querySelector(".card__like-button");
+  const deleteButton = cardTempleteClon.querySelector(".card__delete-button");
 
   cardImage.src = link;
   cardImage.alt = name;
   cardTitle.textContent = name;
 
-  return cardTempleteClon;
+  likeButton.addEventListener("click", function(){
+    likeButton.classList.toggle("card__like-button_is-active");
+  });
+
+  deleteButton.addEventListener("click", function(){
+    cardTempleteClon.remove();
+  });
+
+ return cardTempleteClon;
 }
 
 function renderCard(name, link, container) {
