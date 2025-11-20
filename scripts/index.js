@@ -25,8 +25,36 @@ const initialCards = [
   },
 ];
 
-initialCards.forEach(function (item) {
-  console.log(item);
+const cardTemplate = document
+  .querySelector("#card-template")
+  .content.querySelector(".card");
+
+
+const cardContainer = document.querySelector(".cards__list");
+
+
+function getCardElement(
+  name = "Sin título",
+  link = "./images/placeholder.jpg"
+) {
+  const cardTempleteClon = cardTemplate.cloneNode(true);
+  const cardImage = cardTempleteClon.querySelector(".card__image");
+  const cardTitle = cardTempleteClon.querySelector(".card__title");
+
+  cardImage.src = link;
+  cardImage.alt = name;
+  cardTitle.textContent = name;
+
+  return cardTempleteClon;
+}
+
+function renderCard(name, link, container) {
+  const cardElement = getCardElement(name, link);
+  container.prepend(cardElement);
+}
+
+initialCards.forEach((card) => {
+  renderCard(card.name, card.link, cardContainer);
 });
 
 const editar_perfil = document.querySelector(".profile__edit-button");
@@ -42,17 +70,10 @@ const descripcion_input = modal_popup.querySelector(
 function openModal(element) {
   element.classList.add("popup_is-opened");
 }
+
 function closeModal(element) {
   element.classList.remove("popup_is-opened");
 }
-
-editar_perfil.addEventListener("click", function () {
-  handleOpenEditModal();
-});
-
-cerrar.addEventListener("click", function () {
-  closeModal(modal_popup);
-});
 
 function fillProfileForm() {
   nombre_input.value = nombre_perfil.textContent;
@@ -63,6 +84,14 @@ function handleOpenEditModal() {
   fillProfileForm();
   openModal(modal_popup);
 }
+
+editar_perfil.addEventListener("click", function () {
+  handleOpenEditModal();
+});
+
+cerrar.addEventListener("click", function () {
+  closeModal(modal_popup);
+});
 
 let formElement = modal_popup.querySelector("#edit-profile-form");
 
@@ -76,3 +105,19 @@ function handleProfileFormSubmit(evt) {
 }
 
 formElement.addEventListener("submit", handleProfileFormSubmit);
+
+
+const addButton = document.querySelector(".profile__add-button");
+const newCardPop = document.querySelector("#new-card-popup");
+const closeNewCard = newCardPop.querySelector(".popup__close");
+const popupForm = document.querySelector("#new-card-form");
+const inputName = popupForm.querySelector(".popup__input_type_card-name");
+const inputUrl = popupForm.querySelector(".popup__input_type_url");
+
+addButton.addEventListener("click", function() {
+  openModal(newCardPop);
+});
+
+closeNewCard.addEventListener("click", function(){
+  closeModal(newCardPop);
+});
