@@ -35,10 +35,7 @@ const popupImage = imagePopup.querySelector(".popup__image");
 const popupCaption = imagePopup.querySelector(".popup__caption");
 const popupButton = imagePopup.querySelector(".popup__close");
 
-function getCardElement(
-  name = "Sin título",
-  link = "./images/placeholder.jpg"
-) {
+function getCardElement(name, link) {
   const cardTempleteClon = cardTemplate.cloneNode(true);
   const cardImage = cardTempleteClon.querySelector(".card__image");
   const cardTitle = cardTempleteClon.querySelector(".card__title");
@@ -137,9 +134,17 @@ const popupForm = document.querySelector("#new-card-form");
 const inputName = popupForm.querySelector(".popup__input_type_card-name");
 const inputUrl = popupForm.querySelector(".popup__input_type_url");
 
-addButton.addEventListener("click", function () {
+const newCardForm = document.getElementById("new-card-form");
+const placeNameInput = newCardForm.querySelector("#place-name");
+const placeUrlInput = newCardForm.querySelector("#place-url");
+const newCardButton = newCardForm.querySelector(".popup__button");
+
+function handleOpenNewCardModal () { 
+updateNewCardButton();
+hideInputError(newCardForm, placeNameInput);
+hideInputError(newCardForm, placeUrlInput);
   openModal(newCardPop);
-});
+}
 
 closeNewCard.addEventListener("click", function () {
   closeModal(newCardPop);
@@ -160,10 +165,10 @@ function handleCardFormSubmit(evt) {
   closeModal(newCardPop);
 }
 
-const form = document.getElementById("edit-profile-form");
-const profileNameInput = form.querySelector("#profile-name");
-const profileDescriptionInput = form.querySelector("#profile-description");
-const buttonProfile = form.querySelector(".popup__button");
+const editform = document.getElementById("edit-profile-form");
+const profileNameInput = editform.querySelector("#profile-name");
+const profileDescriptionInput = editform.querySelector("#profile-description");
+const buttonProfile = editform.querySelector(".popup__button");
 
 function updateButton() {
   if (
@@ -178,34 +183,69 @@ function updateButton() {
 
 profileNameInput.addEventListener("input", function () {
   if (!profileNameInput.validity.valid) {
-    showInputError(profileNameInput);
+    showInputError(editform, profileNameInput);
   } else {
-    hideInputError(profileNameInput);
+    hideInputError(editform, profileNameInput);
   }
   updateButton();
 });
 
 profileDescriptionInput.addEventListener("input", function () {
   if (!profileDescriptionInput.validity.valid) {
-    showInputError(profileDescriptionInput);
+    showInputError(editform, profileDescriptionInput);
   } else {
-    hideInputError(profileDescriptionInput);
+    hideInputError(editform, profileDescriptionInput);
   }
   updateButton();
 });
 
-function showInputError(inputElement) {
-  const errorElement = form.querySelector(`.${inputElement.id}-input-error`);
+function showInputError(formElement, inputElement) {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-input-error`);
   inputElement.classList.add("popup__input_type_error");
   errorElement.textContent = inputElement.validationMessage;
   errorElement.classList.add("popup__input-error_active");
 }
 
-function hideInputError(inputElement) {
-  const errorElement = form.querySelector(`.${inputElement.id}-input-error`);
+function hideInputError(formElement, inputElement) {
+  const errorElement = formElement.querySelector(`.${inputElement.id}-input-error`);
   inputElement.classList.remove("popup__input_type_error");
   errorElement.textContent = "";
   errorElement.classList.remove("popup__input-error_active");
 }
 
 updateButton();
+
+
+
+addButton.addEventListener("click", function () {
+  handleOpenNewCardModal();
+});
+
+function updateNewCardButton(){
+  if (placeNameInput.checkValidity() && placeUrlInput.checkValidity()){
+    newCardButton.disabled = false;
+  } else{
+    newCardButton.disabled = true;
+  }
+}
+
+placeNameInput.addEventListener("input", function(){
+  if(!placeNameInput.validity.valid){
+    showInputError(newCardForm, placeNameInput);
+  }
+  else{
+    hideInputError(newCardForm, placeNameInput);
+  }
+  updateNewCardButton();
+});
+
+placeUrlInput.addEventListener("input", function(){
+  if(!placeUrlInput.validity.valid){
+    showInputError(newCardForm, placeUrlInput);
+  }else{
+    hideInputError(newCardForm, placeUrlInput);
+  }
+  updateNewCardButton();
+});
+
+updateNewCardButton();
