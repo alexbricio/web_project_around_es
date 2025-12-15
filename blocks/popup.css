@@ -26,6 +26,29 @@
   margin-top: 48px;
 }
 
+.popup__button:disabled {
+  opacity: 0.2;
+  border: 1px solid #000000;
+  border-radius: 2px;
+}
+
+.popup__input_type_error {
+  border-bottom: 2px solid red;
+}
+
+.popup__input-error {
+  display: block;
+  min-height: 30px;
+  font-size: 12px;
+  line-height: 15px;
+  color: red;
+  opacity: 0;
+}
+
+.popup__input-error_active {
+  opacity: 1;
+}
+
 .popup__button:hover {
   background: rgba(0, 0, 0, 0.8);
   cursor: pointer;

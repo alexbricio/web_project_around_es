@@ -35,7 +35,6 @@
           ></button>
         </section>
 
-      
         <template id="card-template">
           <li class="card">
             <img class="card__image" src="" alt="" />
@@ -56,8 +55,6 @@
         </template>
 
         <section class="cards page__section">
-
-          
           <ul class="cards__list"></ul>
         </section>
       </main>
@@ -74,17 +71,29 @@
           <h3 class="popup__title">Editar perfil</h3>
           <form class="popup__form" id="edit-profile-form">
             <input
+              id="profile-name"
               class="popup__input popup__input_type_name"
               name="name"
               placeholder="Nombre"
               type="text"
+              minlength="2"
+              maxlength="40"
+              required
             />
+            <span class="profile-name-input-error popup__input-error"></span>
             <input
+              id="profile-description"
               class="popup__input popup__input_type_description"
               name="description"
               placeholder="Acerca de mí"
               type="text"
+              minlength="2"
+              maxlength="200"
+              required
             />
+            <span
+              class="profile-description-input-error popup__input-error"
+            ></span>
             <button class="button popup__button" type="submit">Guardar</button>
           </form>
         </div>
