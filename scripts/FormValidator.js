@@ -67,6 +67,14 @@ class FormValidator {
     this._setEventListeners();
     this._toggleButtonState();
   }
+
+  resetValidation() {
+    this._toggleButtonState();
+
+    this._inputList.forEach((inputElement) => {
+      this._hideInputError(inputElement);
+    });
+  }
 }
 
 export default FormValidator;

@@ -72,8 +72,8 @@ function fillProfileForm() {
 }
 
 function handleOpenEditModal() {
-  updateButton();
   fillProfileForm();
+  profileFormValidator.resetValidation();
   openModal(modal_popup);
 }
 
@@ -106,9 +106,6 @@ const inputName = popupForm.querySelector(".popup__input_type_card-name");
 const inputUrl = popupForm.querySelector(".popup__input_type_url");
 
 const newCardForm = document.getElementById("new-card-form");
-const placeNameInput = newCardForm.querySelector("#place-name");
-const placeUrlInput = newCardForm.querySelector("#place-url");
-const newCardButton = newCardForm.querySelector(".popup__button");
 const validationConfig = {
   formSelector: ".popup__form",
   inputSelector: ".popup__input",
@@ -119,9 +116,7 @@ const validationConfig = {
 };
 
 function handleOpenNewCardModal() {
-  hideInputError(newCardForm, placeNameInput);
-  hideInputError(newCardForm, placeUrlInput);
-  updateNewCardButton();
+  newCardFormValidator.resetValidation();
   openModal(newCardPop);
 }
 
@@ -162,9 +157,6 @@ function handleCardFormSubmit(evt) {
 }
 
 const editform = document.getElementById("edit-profile-form");
-const profileNameInput = editform.querySelector("#profile-name");
-const profileDescriptionInput = editform.querySelector("#profile-description");
-const buttonProfile = editform.querySelector(".popup__button");
 const profileFormValidator = new FormValidator(validationConfig, editform);
 profileFormValidator.enableValidation();
 
