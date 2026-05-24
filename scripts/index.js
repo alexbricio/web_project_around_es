@@ -1,5 +1,6 @@
 import Card from "./Card.js";
 import FormValidator from "./FormValidator.js";
+import { openModal, closeModal } from "./utils.js";
 
 const initialCards = [
   {
@@ -58,14 +59,6 @@ initialCards.forEach((card) => {
   renderCard(card.name, card.link, cardContainer);
 });
 
-function openModal(element) {
-  element.classList.add("popup_is-opened");
-}
-
-function closeModal(element) {
-  element.classList.remove("popup_is-opened");
-}
-
 function fillProfileForm() {
   nombre_input.value = nombre_perfil.textContent;
   descripcion_input.value = descripcion.textContent;
@@ -85,7 +78,7 @@ cerrar.addEventListener("click", function () {
   closeModal(modal_popup);
 });
 
-let formElement = modal_popup.querySelector("#edit-profile-form");
+const formElement = modal_popup.querySelector("#edit-profile-form");
 
 function handleProfileFormSubmit(evt) {
   evt.preventDefault();
@@ -160,10 +153,10 @@ function handleCardFormSubmit(evt) {
 
 const editform = document.getElementById("edit-profile-form");
 const profileFormValidator = new FormValidator(validationConfig, editform);
-profileFormValidator.enableValidation();
+profileFormValidator.setEventListeners();
 
 const newCardFormValidator = new FormValidator(validationConfig, newCardForm);
-newCardFormValidator.enableValidation();
+newCardFormValidator.setEventListeners();
 
 function handleCardClick(name, link) {
   popupCaption.textContent = name;
