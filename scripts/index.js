@@ -41,9 +41,7 @@ const cerrar = modal_popup.querySelector(".popup__close");
 const nombre_perfil = document.querySelector(".profile__title");
 const descripcion = document.querySelector(".profile__description");
 const nombre_input = modal_popup.querySelector(".popup__input_type_name");
-const descripcion_input = modal_popup.querySelector(
-  ".popup__input_type_description"
-);
+const descripcion_input = modal_popup.querySelector(".popup__input_type_description");
 
 function getCardElement(name, link) {
   const cardTempleteClon = cardTemplate.cloneNode(true);
