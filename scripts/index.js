@@ -1,3 +1,5 @@
+import Card from "./Card.js";
+
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -25,10 +27,6 @@ const initialCards = [
   },
 ];
 
-const cardTemplate = document
-  .querySelector("#card-template")
-  .content.querySelector(".card");
-
 const cardContainer = document.querySelector(".cards__list");
 const imagePopup = document.querySelector("#image-popup");
 const popupImage = imagePopup.querySelector(".popup__image");
@@ -41,43 +39,17 @@ const cerrar = modal_popup.querySelector(".popup__close");
 const nombre_perfil = document.querySelector(".profile__title");
 const descripcion = document.querySelector(".profile__description");
 const nombre_input = modal_popup.querySelector(".popup__input_type_name");
-const descripcion_input = modal_popup.querySelector(".popup__input_type_description");
-
-function getCardElement(name, link) {
-  const cardTempleteClon = cardTemplate.cloneNode(true);
-  const cardImage = cardTempleteClon.querySelector(".card__image");
-  const cardTitle = cardTempleteClon.querySelector(".card__title");
-  const likeButton = cardTempleteClon.querySelector(".card__like-button");
-  const deleteButton = cardTempleteClon.querySelector(".card__delete-button");
-
-  cardImage.src = link;
-  cardImage.alt = name;
-  cardTitle.textContent = name;
-
-  likeButton.addEventListener("click", function () {
-    likeButton.classList.toggle("card__like-button_is-active");
-  });
-
-  deleteButton.addEventListener("click", function () {
-    cardTempleteClon.remove();
-  });
-
-  cardImage.addEventListener("click", function () {
-    popupCaption.textContent = name;
-    popupImage.src = link;
-    popupImage.alt = name;
-    openModal(imagePopup);
-  });
-
-  return cardTempleteClon;
-}
+const descripcion_input = modal_popup.querySelector(
+  ".popup__input_type_description",
+);
 
 popupButton.addEventListener("click", function () {
   closeModal(imagePopup);
 });
 
 function renderCard(name, link, container) {
-  const cardElement = getCardElement(name, link);
+  const card = new Card(name, link, "#card-template", handleCardClick);
+  const cardElement = card.generateCard();
   container.prepend(cardElement);
 }
 
@@ -216,7 +188,7 @@ profileDescriptionInput.addEventListener("input", function () {
 
 function showInputError(formElement, inputElement) {
   const errorElement = formElement.querySelector(
-    `.${inputElement.id}-input-error`
+    `.${inputElement.id}-input-error`,
   );
   inputElement.classList.add("popup__input_type_error");
   errorElement.textContent = inputElement.validationMessage;
@@ -225,7 +197,7 @@ function showInputError(formElement, inputElement) {
 
 function hideInputError(formElement, inputElement) {
   const errorElement = formElement.querySelector(
-    `.${inputElement.id}-input-error`
+    `.${inputElement.id}-input-error`,
   );
   inputElement.classList.remove("popup__input_type_error");
   errorElement.textContent = "";
@@ -265,3 +237,10 @@ placeUrlInput.addEventListener("input", function () {
 });
 
 updateNewCardButton();
+
+function handleCardClick(name, link) {
+  popupCaption.textContent = name;
+  popupImage.src = link;
+  popupImage.alt = name;
+  openModal(imagePopup);
+}
