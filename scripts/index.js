@@ -120,6 +120,8 @@ function handleOpenNewCardModal() {
   openModal(newCardPop);
 }
 
+addButton.addEventListener("click", handleOpenNewCardModal);
+
 popups.forEach(function (popup) {
   popup.addEventListener("click", function (evt) {
     if (evt.target === evt.currentTarget) {
