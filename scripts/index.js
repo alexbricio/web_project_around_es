@@ -1,4 +1,5 @@
 import Card from "./Card.js";
+import FormValidator from "./FormValidator.js";
 
 const initialCards = [
   {
@@ -108,6 +109,14 @@ const newCardForm = document.getElementById("new-card-form");
 const placeNameInput = newCardForm.querySelector("#place-name");
 const placeUrlInput = newCardForm.querySelector("#place-url");
 const newCardButton = newCardForm.querySelector(".popup__button");
+const validationConfig = {
+  formSelector: ".popup__form",
+  inputSelector: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "popup__button_disabled",
+  inputErrorClass: "popup__input_type_error",
+  errorClass: "popup__input-error_active",
+};
 
 function handleOpenNewCardModal() {
   hideInputError(newCardForm, placeNameInput);
@@ -156,87 +165,11 @@ const editform = document.getElementById("edit-profile-form");
 const profileNameInput = editform.querySelector("#profile-name");
 const profileDescriptionInput = editform.querySelector("#profile-description");
 const buttonProfile = editform.querySelector(".popup__button");
+const profileFormValidator = new FormValidator(validationConfig, editform);
+profileFormValidator.enableValidation();
 
-function updateButton() {
-  if (
-    profileNameInput.checkValidity() &&
-    profileDescriptionInput.checkValidity()
-  ) {
-    buttonProfile.disabled = false;
-  } else {
-    buttonProfile.disabled = true;
-  }
-}
-
-profileNameInput.addEventListener("input", function () {
-  if (!profileNameInput.validity.valid) {
-    showInputError(editform, profileNameInput);
-  } else {
-    hideInputError(editform, profileNameInput);
-  }
-  updateButton();
-});
-
-profileDescriptionInput.addEventListener("input", function () {
-  if (!profileDescriptionInput.validity.valid) {
-    showInputError(editform, profileDescriptionInput);
-  } else {
-    hideInputError(editform, profileDescriptionInput);
-  }
-  updateButton();
-});
-
-function showInputError(formElement, inputElement) {
-  const errorElement = formElement.querySelector(
-    `.${inputElement.id}-input-error`,
-  );
-  inputElement.classList.add("popup__input_type_error");
-  errorElement.textContent = inputElement.validationMessage;
-  errorElement.classList.add("popup__input-error_active");
-}
-
-function hideInputError(formElement, inputElement) {
-  const errorElement = formElement.querySelector(
-    `.${inputElement.id}-input-error`,
-  );
-  inputElement.classList.remove("popup__input_type_error");
-  errorElement.textContent = "";
-  errorElement.classList.remove("popup__input-error_active");
-}
-
-updateButton();
-
-addButton.addEventListener("click", function () {
-  handleOpenNewCardModal();
-});
-
-function updateNewCardButton() {
-  if (placeNameInput.checkValidity() && placeUrlInput.checkValidity()) {
-    newCardButton.disabled = false;
-  } else {
-    newCardButton.disabled = true;
-  }
-}
-
-placeNameInput.addEventListener("input", function () {
-  if (!placeNameInput.validity.valid) {
-    showInputError(newCardForm, placeNameInput);
-  } else {
-    hideInputError(newCardForm, placeNameInput);
-  }
-  updateNewCardButton();
-});
-
-placeUrlInput.addEventListener("input", function () {
-  if (!placeUrlInput.validity.valid) {
-    showInputError(newCardForm, placeUrlInput);
-  } else {
-    hideInputError(newCardForm, placeUrlInput);
-  }
-  updateNewCardButton();
-});
-
-updateNewCardButton();
+const newCardFormValidator = new FormValidator(validationConfig, newCardForm);
+newCardFormValidator.enableValidation();
 
 function handleCardClick(name, link) {
   popupCaption.textContent = name;
