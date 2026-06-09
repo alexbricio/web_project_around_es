@@ -2,7 +2,7 @@ import Card from "../components/Card.js";
 import FormValidator from "../components/FormValidator.js";
 import Section from "../components/Section.js";
 import PopupWithImage from "../components/PopupWithImage.js";
-import PopupWithForm from "../components/PopupWithForm.js";
+import PopupWithForm from "../components/PopupWithForms.js";
 import UserInfo from "../components/UserInfo.js";
 
 const initialCards = [
@@ -50,8 +50,8 @@ const profilePopup = new PopupWithForm("#edit-popup", (formData) => {
 profilePopup.setEventListeners();
 
 const editProfileForm = document.querySelector("#edit-profile-form");
-const nombre_input = editProfileForm.querySelector(".popup__input_type_name");
-const descripcion_input = editProfileForm.querySelector(
+const nombreInput = editProfileForm.querySelector(".popup__input_type_name");
+const descriptionInput = editProfileForm.querySelector(
   ".popup__input_type_description",
 );
 
@@ -92,8 +92,8 @@ newCardPopup.setEventListeners();
 
 function fillProfileForm() {
   const userData = userInfo.getUserInfo();
-  nombre_input.value = userData.name;
-  descripcion_input.value = userData.description;
+  nombreInput.value = userData.name;
+  descriptionInput.value = userData.description;
 }
 
 function handleOpenEditModal() {
