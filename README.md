@@ -1,88 +1,67 @@
 # Tripleten web_project_around_es
 
-Prueba# Around The U.S.
+Around The U.S.
 
 https://alexbricio.github.io/web_project_around_es/
 
 ## Descripción del proyecto
 
-Este proyecto corresponde al Sprint 10 de TripleTen y consiste en la refactorización de la aplicación Around The U.S. utilizando Programación Orientada a Objetos (POO) y módulos de JavaScript.
+Proyecto del Sprint 12 de TripleTen. Es una aplicación web interactiva conectada a una API, donde el usuario puede editar su perfil, cambiar su avatar, agregar tarjetas, dar o quitar likes y eliminar sus propias tarjetas.
 
-La aplicación permite:
+## Enlace del proyecto
 
-- Editar la información del perfil.
-- Agregar nuevas tarjetas dinámicamente.
-- Dar like a las tarjetas.
-- Eliminar tarjetas.
-- Abrir imágenes en un popup.
-- Validar formularios dinámicamente.
-- Cerrar popups mediante botón, clic fuera del popup y tecla Escape.
+https://alexbricio.github.io/web_project_around_es/
+
+## Funcionalidades
+
+- Carga de información del usuario desde el servidor.
+- Carga de tarjetas desde el servidor.
+- Edición del perfil del usuario.
+- Actualización del avatar.
+- Creación de nuevas tarjetas.
+- Eliminación de tarjetas propias con confirmación.
+- Likes y unlikes conectados a la API.
+- Vista ampliada de imágenes en popup.
+- Validación de formularios.
+- Indicador "Guardando..." durante solicitudes al servidor.
+- Cierre de popups con botón, tecla Escape y clic fuera del contenido.
 
 ## Tecnologías utilizadas
 
 - HTML5
 - CSS3
-- JavaScript (ES6)
-- Programación Orientada a Objetos (POO)
-- Módulos de JavaScript
+- JavaScript ES6
+- Programación Orientada a Objetos
+- Módulos JavaScript
+- API REST
+- Fetch API
+- Promesas
 - Metodología BEM
+- Diseño responsive
 
-## Estructura del proyecto
+## Estructura principal
 
 ```text
-scripts/
-  Card.js
-  FormValidator.js
-  index.js
-  utils.js
+src/
+  blocks/
+  components/
+    Api.js
+    Card.js
+    FormValidator.js
+    Popup.js
+    PopupWithConfirmation.js
+    PopupWithForms.js
+    PopupWithImage.js
+    Section.js
+    UserInfo.js
+  images/
+  pages/
+    index.css
+    index.js
+  vendor/
+index.html
+README.md
 ```
-
-## Funcionalidades implementadas
-
-### Clase Card
-
-La clase `Card` se encarga de:
-
-- Generar tarjetas dinámicamente.
-- Manejar likes.
-- Eliminar tarjetas.
-- Abrir imágenes en popup.
-- Trabajar con plantillas HTML.
-
-### Clase FormValidator
-
-La clase `FormValidator` permite:
-
-- Validar formularios dinámicamente.
-- Mostrar mensajes de error.
-- Deshabilitar o habilitar botones.
-- Limpiar validaciones al abrir formularios.
-
-### Utils
-
-El archivo `utils.js` contiene funciones reutilizables para:
-
-- Abrir popups.
-- Cerrar popups.
-
-## Instalación y ejecución
-
-1. Clonar el repositorio:
-
-```bash
-git clone https://github.com/alexbricio/web_project_around_es.git
-```
-
-2. Abrir el proyecto en Visual Studio Code.
-
-3. Ejecutar Live Server.
-
-## Mejoras futuras
-
-- Conectar la aplicación con una API.
-- Guardar tarjetas dinámicamente.
-- Agregar sistema de usuarios.
-- Implementar animaciones.
 
 ## Autor
 

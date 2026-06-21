@@ -83,6 +83,30 @@
   padding: 34px 36px;
 }
 
+.popup__content_type_confirmation {
+  min-height: 181px;
+}
+
+.popup__content_type_avatar {
+  min-height: 272px;
+}
+
+.popup__form.popup__form_type_confirmation {
+  margin-top: 38px;
+}
+
+.popup__form.popup__form_type_avatar {
+  margin-top: 36px;
+}
+
+.popup__button.popup__button_type_confirmation {
+  margin-top: 0;
+}
+
+.popup__button.popup__button_type_avatar {
+  margin-top: 32px;
+}
+
 .popup__form {
   margin-top: 27px;
 }

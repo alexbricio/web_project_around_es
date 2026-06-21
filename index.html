@@ -18,7 +18,17 @@
       </header>
       <main class="content">
         <section class="profile page__section">
-          <img class="profile__image" src="./src/images/avatar.jpg" alt="Avatar" />
+          <button
+            class="profile__avatar-button"
+            type="button"
+            aria-label="Editar avatar"
+          >
+            <img
+              class="profile__image"
+              src="./src/images/avatar.jpg"
+              alt="Avatar"
+            />
+          </button>
           <div class="profile__info">
             <h1 class="profile__title">Jacques Cousteau</h1>
             <button
@@ -126,6 +136,49 @@
               type="url"
             /><span class="place-url-input-error popup__input-error"></span>
             <button class="button popup__button" type="submit">Crear</button>
+          </form>
+        </div>
+      </div>
+      <div class="popup" id="avatar-popup">
+        <div class="popup__content popup__content_type_avatar">
+          <button
+            aria-label="Cerrar ventana emergente"
+            class="popup__close"
+            type="button"
+          ></button>
+          <h3 class="popup__title">Cambiar foto de perfil</h3>
+          <form class="popup__form popup__form_type_avatar" id="avatar-form">
+            <input
+              id="avatar-url"
+              class="popup__input popup__input_type_avatar-url"
+              name="avatar"
+              placeholder="Enlace a la imagen"
+              required
+              type="url"
+            />
+            <span class="avatar-url-input-error popup__input-error"></span>
+            <button class="button popup__button popup__button_type_avatar" type="submit">Guardar</button>
+          </form>
+        </div>
+      </div>
+      <div class="popup" id="delete-card-popup">
+        <div class="popup__content popup__content_type_confirmation">
+          <button
+            aria-label="Cerrar ventana emergente"
+            class="popup__close"
+            type="button"
+          ></button>
+          <h3 class="popup__title">¿Estás seguro?</h3>
+          <form
+            class="popup__form popup__form_type_confirmation"
+            id="delete-card-form"
+          >
+            <button
+              class="button popup__button popup__button_type_confirmation"
+              type="submit"
+            >
+              Sí
+            </button>
           </form>
         </div>
       </div>
